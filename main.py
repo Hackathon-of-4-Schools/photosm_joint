@@ -9,7 +9,7 @@ mp_drawing = mp.solutions.drawing_utils
 
 # 파일 경로 설정
 input_image_path = "image.jpg"  # 사용자가 업로드한 이미지 파일 경로
-output_image_path = "output_image.jpg"  # 처리된 이미지를 저장할 파일 경로
+output_image_path = "output_image.png"  # 처리된 이미지를 저장할 파일 경로
 
 # 이미지 불러오기
 image = cv2.imread(input_image_path)
@@ -66,5 +66,7 @@ else:
                 )
 
         # 처리된 이미지 저장
-        cv2.imwrite(output_image_path, black_image)
+        np.save(output_image_path, black_image)
         print(f"이미지 처리 완료: {output_image_path}")
+
+        
