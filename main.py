@@ -145,11 +145,13 @@ else:
         open_pose_order_list.append(convert_landmark(pose_results.pose_landmarks.landmark[mp_pose.PoseLandmark.RIGHT_EAR]))
         open_pose_order_list.append(convert_landmark(pose_results.pose_landmarks.landmark[mp_pose.PoseLandmark.LEFT_EAR]))
         open_pose_order_list = np.array(open_pose_order_list)
-
+        np.set_printoptions(threshold=sys.maxsize, linewidth=np.inf)
         label_tensor, face_center = get_label_tensor(open_pose_order_list)
         # label_tensor = np.reshape(label_tensor, [IMAGE_SIZE, IMAGE_SIZE, label_tensor.shape[0]])
-
-        print(np.reshape(label_tensor, newshape=[IMAGE_SIZE, IMAGE_SIZE, label_tensor.shape[0]]))
+        label_tensor = label_tensor.T
+        print(label_tensor.dtype)
+        np.save("joint_data", label_tensor)
+        # print(np.reshape(label_tensor, newshape=[IMAGE_SIZE, IMAGE_SIZE, label_tensor.shape[0]]))
         
         # print(open_pose_order_list)
 
