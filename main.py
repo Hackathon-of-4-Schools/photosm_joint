@@ -2,6 +2,18 @@ import cv2
 import numpy as np
 import mediapipe as mp
 
+from PIL import Image
+
+# PNG 파일을 불러와서 NumPy 배열로 변환
+def png_to_npy(png_file, npy_file):
+    image = Image.open(png_file)         # 이미지 파일 열기
+    image_np = np.array(image)           # NumPy 배열로 변환
+    
+    np.save(npy_file, image_np)          # .npy 파일로 저장
+    print(f"{npy_file} 파일이 저장되었습니다.")
+
+
+
 # Mediapipe 솔루션 초기화
 mp_pose = mp.solutions.pose
 mp_hands = mp.solutions.hands
@@ -68,5 +80,5 @@ else:
         # 처리된 이미지 저장
         np.save(output_image_path, black_image)
         print(f"이미지 처리 완료: {output_image_path}")
-
+        png_to_npy("output_image.jpg", "output.npy")
         
